@@ -5,6 +5,7 @@ author: "Hai Ngoc Vo"
 date: "`r Sys.Date()`"
 output:
   xaringan::moon_reader:
+    self_contained: true
     lib_dir: libs
     nature:
       highlightStyle: github
