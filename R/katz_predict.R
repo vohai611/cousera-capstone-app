@@ -1,9 +1,9 @@
-katz_predict = function(word, tri_gram, n = 10,  gamma2 = 0.5, gamma3 = 0.5 ){
+katz_predict = function(word, tri_gram, gamma2 = 0.5, gamma3 = 0.5 ){
   
   word = str_to_lower(word)
   word = strsplit(word, " ")[[1]]
   
-  word1 = word[[length(word)-1]]
+ if(length(word) > 1) word1 = word[[length(word)-1]]
   word2 = word[[length(word)]]
   
   observed_q2 = tri_gram %>% 
@@ -21,6 +21,8 @@ katz_predict = function(word, tri_gram, n = 10,  gamma2 = 0.5, gamma3 = 0.5 ){
   
   q2 = bind_rows.(observed_q2, un_observed_q2)
   
+  if (length(word) == 1)
+    return(q2 %>% arrange.(desc.(q2_bo)) %>% rename.(q_bo = q2_bo))
   
   # trigram calculation
   ## observed

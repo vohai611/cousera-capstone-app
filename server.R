@@ -9,7 +9,8 @@
 
 library(shiny)
 source("R/katz_predict.R")
-tri_gram_small = readRDS("data/tri_gram_small.rds")
+tri_gram_small = readRDS("data/tri_gram_small.rds") %>% 
+  head(10000)
 
 # Define server logic required to draw a histogram
 shinyServer(function(input, output, session) {
@@ -24,7 +25,7 @@ shinyServer(function(input, output, session) {
   })
   
   word_predict = reactive({
-    req(length(strsplit(input$text_input, " ")[[1]]) >= 2)
+    req(input$text_input)
     katz_predict(
       input$text_input,
       tri_gram = tri_gram_sample(),

@@ -26,8 +26,6 @@ get_full_trigram = function(text_raw, stop_word = NULL, bad_word = NULL){
   
   add_on_word = c(pull(add_on, w1), pull(add_on, w2))
   add_on_word = tibble(w3= add_on_word, w1 = NA_character_, w2 = NA_character_)
-  #add_on = tibble(w3=  uni_gram$w3[!(uni_gram$w3 %in% tri_gram$w3)] , w1 = NA_character_, w2 = NA_character_)
-  
   
   tri_gram = tri_gram %>% 
     bind_rows.(add_on_word)
